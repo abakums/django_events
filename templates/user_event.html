@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block title %}{{ event.title }}{% endblock %}
+{% block content %}
+    <h3>{{ event.title }} ({{ event.get_event_type_display }})</h3>
+    <h4>Организатор: {{ event.organizer }}</h4>
+    <h5>Место проведения: {{ event.location }}</h5>
+    <p>{{ event.description }}</p>
+    <p>Дата проведения: {{ event.event_date }}</p>
+    <p>Дата размещения: {{ event.published_date }}</p><br>
+    {% if event.event_type == 1 %}
+        <h2>Заявки</h2>
+    {% else %}
+        <h2>Отклики</h2>
+    {% endif %}
+    {% for reply in replies %}
+        {% if event.event_type == 1 %}
+            <p>Участник: {{ reply.participant.username }}</p>
+            <p>Email: {{ reply.participant.email }}</p>
+            <p>Текст отклика: {{ reply.description }}</p><br>
+        {% else %}
+            <h3>{{ reply.title }}</h3>
+            <p>Участник: {{ reply.participant.username }}</p>
+            <p>Email: {{ reply.participant.email }}</p>
+            <p>Текст отклика: {{ reply.description }}</p>
+            <p>Разряд участника: {{ reply.rank }}</p>
+            <p>Команда участника: {{ reply.command }}</p>
+            <p>Приложенные документы: <a href='{{ MEDIA_URL }}/{{ reply.document }}'>Документ</a></p><br>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

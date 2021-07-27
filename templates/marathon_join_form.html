@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block title %} Создание заявки {% endblock %}
+{% block content %}
+    <h2 align="center">Создание заявки для участия в марафоне</h2>
+    <p align="center">Заполните поле ниже для создания новой заявки</p>
+    <form action="{% url 'marathon_join' pk %}" method="post">
+        {{ marathon_form.as_p }}
+        {% csrf_token %}
+        <p><input  type="submit" value="Отправить заявку"></p>
+    </form>
+{% endblock %}

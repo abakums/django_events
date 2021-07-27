@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block title %} Создание отклика {% endblock %}
+{% block content %}
+    <h2 align="center">Создание отклика для участия в соревнованиях</h2>
+    <p align="center">Заполните поле ниже для создания нового отклика</p>
+    <form action="{% url 'competition_join' pk %}" enctype="multipart/form-data" method="post">
+        {{ competition_form.as_p }}
+        {% csrf_token %}
+        <p><input  type="submit" value="Отправить отклик"></p>
+    </form>
+{% endblock %}

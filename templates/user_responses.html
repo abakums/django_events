@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block title %} Мои отклики {% endblock %}
+{% block content %}
+    <h2 align="center"> Мои отклики </h2>
+    {% for response in responses %}
+        <h3>Событие: {{ response.event.title }}</h3>
+        <h3>{{ response.title }}</h3>
+        <p>Текст отклика: {{ response.description }}</p>
+        <p>Разряд: {{ response.rank }}</p>
+        <p>Команда: {{ response.command }}</p>
+
+        <p>Приложенные документы: <a href='{{ MEDIA_URL }}/{{ response.document }}'>Документ</a></p><br>
+    {% endfor %}
+{% endblock %}

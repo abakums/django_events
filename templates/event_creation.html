@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block title %} Создание мероприятия {% endblock %}
+{% block content %}
+    <h2 align="center">Создание нового мероприятия</h2>
+    <p align="center">Заполните форму ниже для создания нового мероприятия</p>
+    <form action="." method="post">
+        {{ event_form.as_p }}
+        {% csrf_token %}
+        <p><input  type="submit" value="Создать мероприятие"></p>
+    </form>
+{% endblock %}

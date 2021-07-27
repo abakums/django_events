@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block title %} Мои мероприятия {% endblock %}
+{% block content %}
+    <h2 align="center">Мои мероприятия</h2>
+    {% for event in user_events %}
+        <h3>
+            <a href="{% url 'user_event' request.user.pk event.pk %}"> {{ event.title }} </a>
+            ({{ event.get_event_type_display }})
+        </h3>
+        <h4>Организатор: {{ event.organizer }}</h4>
+        <h5>Место проведения: {{ event.location }}</h5>
+        <p>{{ event.description }}</p>
+        <p>Дата проведения: {{ event.event_date }}</p>
+        <p>Дата размещения: {{ event.published_date }}</p><br>
+    {% endfor %}
+{% endblock %}
